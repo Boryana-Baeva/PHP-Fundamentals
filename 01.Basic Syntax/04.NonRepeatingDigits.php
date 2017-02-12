@@ -1,9 +1,7 @@
 <?php
 
 $n = 1234;
-//$n = 145;
-//$n = 15;
-//$n = 247;
+
 $d = $n;
 $digitCount = 0;
 $digitArr = array();
