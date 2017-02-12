@@ -1,6 +1,5 @@
 <?php
-//$input = [3, 3, 3, 3, 3, 3];
-//$commands = ["sumPairs", "sumPairs", "print"];
+
 $input = array_map('intval', explode(" ", fgets(STDIN)));
 $commands = [];
 while ($command = trim(fgets(STDIN))) {
