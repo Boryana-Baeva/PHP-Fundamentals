@@ -67,13 +67,3 @@ for ($i = 0; $i < $linesCount; $i++) {
 }
 
 echo $family->getOldestMember();
-
-/*$familyMembers = $family->getPeople();
-$ages = [];
-foreach ($familyMembers as $familyMember) {
-    $ages[$familyMember->getName()] = $familyMember->getAge();
-}
-
-$oldestMemberAge = max($ages);
-$oldestMemberName = array_search($oldestMemberAge, $ages);
-echo $oldestMemberName . ' ' . $oldestMemberAge;*/
