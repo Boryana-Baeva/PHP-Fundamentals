@@ -1,9 +1,5 @@
 <?php
 
-//$input = explode(" ",fgets(STDIN));
-//$input = [1, 1, 1, 2, 3, 1, 3, 3];
-//$input = [2, 1, 1, 2, 3, 3, 2, 2, 2, 1];
-//$input = [1, 1, 1, 2, 3, 1, 3, 3];
 $input = [4, 4, 4, 4];
 $n = count($input);
 $start = 0;
@@ -36,13 +32,6 @@ for($i = 1; $i < count($lenArr); $i++){
         break;
     }
 }
-
-
-/*foreach (array_combine($startArr, $lenArr) as $start => $len){
-    if(isset(prev($lenArr)) && $len > prev($lenArr)){
-
-    }
-}*/
 
 print_r($lenArr);
 print_r($startArr);
