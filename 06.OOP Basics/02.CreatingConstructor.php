@@ -1,10 +1,5 @@
 <?php
 
-$name = trim(fgets(STDIN));
-$age = intval(trim(fgets(STDIN)));
-$person = new Person($name,$age);
-
-
 class Person {
     public $name;
     public $age;
@@ -15,6 +10,13 @@ class Person {
         echo $this->name . " " . $this->age;
     }
 }
+
+$name = trim(fgets(STDIN));
+$age = intval(trim(fgets(STDIN)));
+$person = new Person($name,$age);
+
+
+
 
 
 
