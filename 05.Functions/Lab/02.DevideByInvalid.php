@@ -20,16 +20,3 @@ try {
 } finally {
     echo "Finally is always executed";
 }
-
-/*try {
-    echo division(5) . "\n";
-    echo division('string') . "\n";
-    echo division(0) . "\n";
-
-} catch (Exception $e) {
-    echo 'Caught exception: ',
-    $e->getMessage(), "\n";
-
-} finally {
-    echo "Finally is always executed";
-}*/
