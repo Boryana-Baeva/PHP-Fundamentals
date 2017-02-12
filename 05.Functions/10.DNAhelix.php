@@ -1,5 +1,5 @@
 <?php
-//$rowCount = 4;
+
 $rowCount = intval(trim(fgets(STDIN)));
 $dna = 'ATCGTTAGGG';
 $letterCount = strlen($dna);
