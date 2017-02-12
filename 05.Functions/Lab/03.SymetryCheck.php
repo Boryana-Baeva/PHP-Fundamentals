@@ -10,5 +10,3 @@ function isPalindrome($str){
 }
 
 echo isPalindrome(trim(fgets(STDIN)));
-//echo isPalindrome("abba");
-//echo isPalindrome("abbahhh");
