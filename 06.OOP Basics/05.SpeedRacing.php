@@ -7,7 +7,9 @@ class Car
     private $fuelCostFor1km;
     private $distanceTraveled;
 
-    function __construct(string $model, float $fuelAmount, float $fuelCostFor1km)
+    public function __construct(string $model,
+                                float $fuelAmount,
+                                float $fuelCostFor1km)
     {
         $this->model = $model;
         $this->fuelAmount = $fuelAmount;
@@ -22,19 +24,21 @@ class Car
 
     public function drive(float $distance)
     {
-        $fuelUsed = round($distance * $this->fuelCostFor1km, 2);
-        if ($fuelUsed <= $this->fuelAmount) {
-            $this->fuelAmount -= $fuelUsed;
-            $this->distanceTraveled += $distance;
-
-        } else {
-            echo "Insufficient fuel for the drive" . PHP_EOL;
+        $fuelUsed = $distance * $this->fuelCostFor1km;
+        $fuelUsed = round($fuelUsed , 2);
+        if ($fuelUsed > round($this->fuelAmount, 2)) {
+            throw new Exception("Insufficient fuel for the drive");
         }
+
+        $this->fuelAmount -= $fuelUsed;
+        $this->distanceTraveled += $distance;
     }
 
     public function __toString()
     {
-        return $this->model . ' ' . number_format($this->fuelAmount , 2) . ' ' . $this->distanceTraveled . PHP_EOL;
+        return $this->model . ' '
+        . number_format(abs($this->fuelAmount), 2) . ' '
+        . $this->distanceTraveled . PHP_EOL;
     }
 }
 
@@ -42,28 +46,35 @@ $numberOfCars = intval(trim(fgets(STDIN)));
 $cars = [];
 for ($i = 0; $i < $numberOfCars; $i++) {
     $carInfo = explode(" ", trim(fgets(STDIN)));
-    list($model, $fuelAmount, $fuelCostFor1km) = [$carInfo[0], floatval($carInfo[1]), floatval($carInfo[2])];
+    list($model, $fuelAmount, $fuelCostFor1km) =
+        [$carInfo[0], floatval($carInfo[1]), floatval($carInfo[2])];
 
     $car = new Car($model, $fuelAmount, $fuelCostFor1km);
-    $cars[] = $car;
+    $cars[$model] = $car;
 }
 
 while (true) {
     $commandLine = trim(fgets(STDIN));
 
-    if ($commandLine == "End") {
+    if ($commandLine == 'End') {
         break;
     }
     $commandLine = explode(" ", $commandLine);
-    list($carModel, $distanceTraveled) = [$commandLine[1], $commandLine[2]];
 
-    foreach ($cars as $car) {
-        if ($carModel == $car->getModel()) {
-            $car->drive($distanceTraveled);
-        }
+    if($commandLine[0] != 'Drive'){
+        continue;
+    }
+    list($carModel, $distanceTraveled) =
+        [$commandLine[1],$commandLine[2]];
+
+    $car = $cars[$carModel];
+    try{
+        $car->drive($distanceTraveled);
+    } catch (Exception $e){
+        echo $e->getMessage() . PHP_EOL;
     }
 }
 
-foreach ($cars  as $car){
-    echo $car->__toString();
+foreach ($cars as $car) {
+    echo $car;
 }
