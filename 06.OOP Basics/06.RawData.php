@@ -119,7 +119,6 @@ for ($i = 0; $i < $numberOfCars; $i++) {
     $cars[] = $car;
 }
 
-//print_r($cars);
 $type = trim(fgets(STDIN));
 $output = [];
 foreach ($cars as $car) {
