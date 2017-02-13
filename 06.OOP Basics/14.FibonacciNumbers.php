@@ -3,7 +3,7 @@
 class Fibonacci{
     private $list = array();
 
-    function __construct($n)
+    function getSequence($n)
     {
         $a = 0;
         $b = 1;
@@ -24,6 +24,7 @@ class Fibonacci{
 
 $start = trim(fgets(STDIN));
 $end = trim(fgets(STDIN));
-$fibonacci = new Fibonacci($end);
+$fibonacci = new Fibonacci();
+$fibonacci->getSequence($end);
 
 echo $fibonacci->getNumbersInRange($start, $end);
