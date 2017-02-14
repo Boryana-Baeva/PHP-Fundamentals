@@ -102,10 +102,6 @@ while (true) {
 
 }
 
-/*$p1 = new Pokemon('Blastoise','Water', 18);
-$tr1 = new Trainer('Stamat', $p1);
-$trainers = [$tr1];*/
-//print_r($trainers);
 while (true) {
     $inputElement = trim(fgets(STDIN));
 
