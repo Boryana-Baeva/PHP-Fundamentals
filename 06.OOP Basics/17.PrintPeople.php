@@ -56,5 +56,5 @@ function sortByAge($p1, $p2){
 usort($people, 'sortByAge');
 
 foreach ($people as $person){
-    echo $person->__toString();
+    echo $person;
 }
