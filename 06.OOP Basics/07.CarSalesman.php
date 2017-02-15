@@ -7,8 +7,10 @@ class Car
     private $weight;
     private $color;
 
-    function __construct(string $model, Engine $engine,
-                         string $weight = 'n/a', string $color = 'n/a')
+    function __construct(string $model,
+                         Engine $engine,
+                         string $weight,
+                         string $color)
     {
         $this->model = $model;
         $this->engine = $engine;
@@ -36,7 +38,10 @@ class Engine
     private $displacement;
     private $efficiency;
 
-    function __construct(string $model, string $power, string $displacement = 'n/a', string $efficiency = 'n/a')
+    function __construct(string $model,
+                         string $power,
+                         string $displacement,
+                         string $efficiency)
     {
         $this->model = $model;
         $this->power = $power;
@@ -69,11 +74,11 @@ $n = intval(trim(fgets(STDIN)));
 $engines = [];
 for ($i = 0; $i < $n; $i++) {
     $engineInfo = explode(" ", trim(fgets(STDIN)));
-    list($model, $power, $displacement, $efficiency) = [$engineInfo[0], $engineInfo[1], 'n/a', 'n/a'];
+    list($model, $power, $displacement, $efficiency) = [$engineInfo[0], floatval($engineInfo[1]), 'n/a', 'n/a'];
 
     if (count($engineInfo) > 2) {
         if (is_numeric($engineInfo[2])) {
-            $displacement = intval($engineInfo[2]);
+            $displacement = floatval($engineInfo[2]);
         } else {
             $efficiency = $engineInfo[2];
         }
@@ -83,24 +88,18 @@ for ($i = 0; $i < $n; $i++) {
          $efficiency = $engineInfo[3];
      }
         $engine = new Engine($model, $power, $displacement, $efficiency);
-    $engines[] = $engine;
+        $engines[$model] = $engine;
 }
 
 $m = intval(trim(fgets(STDIN)));
-
+$cars = [];
 for ($i = 0; $i < $m; $i++) {
     $carInfo = explode(" ", trim(fgets(STDIN)));
     list($model, $carEngine, $weight, $color) = [$carInfo[0], $carInfo[1], 'n/a', 'n/a'];
 
-    foreach ($engines as $engine) {
-        if ($carEngine == $engine->getModel()) {
-            $carEngine = $engine;
-        }
-    }
-
     if (count($carInfo) > 2) {
         if (is_numeric($carInfo[2])) {
-            $weight = intval($carInfo[2]);
+            $weight = floatval($carInfo[2]);
         } else {
             $color = $carInfo[2];
         }
@@ -109,6 +108,12 @@ for ($i = 0; $i < $m; $i++) {
     if (count($carInfo) > 3) {
         $color = $carInfo[3];
     }
+
+    $carEngine = $engines[$carEngine];
     $car = new Car($model, $carEngine, $weight, $color);
-    echo $car->__toString();
+    $cars[] = $car;
+}
+
+foreach ($cars as $car){
+    echo $car;
 }
