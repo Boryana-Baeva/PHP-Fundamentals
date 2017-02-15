@@ -74,7 +74,8 @@ $n = intval(trim(fgets(STDIN)));
 $engines = [];
 for ($i = 0; $i < $n; $i++) {
     $engineInfo = explode(" ", trim(fgets(STDIN)));
-    list($model, $power, $displacement, $efficiency) = [$engineInfo[0], floatval($engineInfo[1]), 'n/a', 'n/a'];
+    list($model, $power, $displacement, $efficiency) =
+            [$engineInfo[0], floatval($engineInfo[1]), 'n/a', 'n/a'];
 
     if (count($engineInfo) > 2) {
         if (is_numeric($engineInfo[2])) {
@@ -95,7 +96,8 @@ $m = intval(trim(fgets(STDIN)));
 $cars = [];
 for ($i = 0; $i < $m; $i++) {
     $carInfo = explode(" ", trim(fgets(STDIN)));
-    list($model, $carEngine, $weight, $color) = [$carInfo[0], $carInfo[1], 'n/a', 'n/a'];
+    list($model, $carEngine, $weight, $color) =
+                [$carInfo[0], $carInfo[1], 'n/a', 'n/a'];
 
     if (count($carInfo) > 2) {
         if (is_numeric($carInfo[2]) && $carInfo[2] != 0) {
