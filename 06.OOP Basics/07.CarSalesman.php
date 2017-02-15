@@ -98,7 +98,7 @@ for ($i = 0; $i < $m; $i++) {
     list($model, $carEngine, $weight, $color) = [$carInfo[0], $carInfo[1], 'n/a', 'n/a'];
 
     if (count($carInfo) > 2) {
-        if (is_numeric($carInfo[2])) {
+        if (is_numeric($carInfo[2]) && $carInfo[2] != 0) {
             $weight = floatval($carInfo[2]);
         } else {
             $color = $carInfo[2];
