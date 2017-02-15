@@ -69,43 +69,37 @@ class Person
         $this->car = $car;
     }
 
+    private function generateOutput($object)
+    {
+        $output = '';
+        if ($object !== null) {
+            if (is_array($object)) {
+                foreach ($object as $item) {
+                    $output .= $item . PHP_EOL;
+                }
+
+            } else {
+                $output = $object . PHP_EOL;
+            }
+        }
+
+        return $output;
+
+    }
+
     public function __toString()
     {
-        $companyOutput = '';
-        if ($this->company !== null) {
-            $companyOutput = $this->company . PHP_EOL;
-        }
-
-        $carOutput = '';
-        if ($this->car !== null) {
-            $carOutput = $this->car . PHP_EOL;
-        }
-
-        $pokemonOutput = '';
-        if ($this->pokemonCollection !== null) {
-            foreach ($this->pokemonCollection as $pokemon) {
-                $pokemonOutput .= $pokemon . PHP_EOL;
-            }
-        }
-
-        $parentOutput = '';
-        if ($this->parents !== null) {
-            foreach ($this->parents as $parents) {
-                $parentOutput .= $parents . PHP_EOL;
-            }
-        }
-        $childrenOutput = '';
-        if ($this->children !== null) {
-            foreach ($this->children as $child) {
-                $childrenOutput .= $child . PHP_EOL;
-            }
-        }
+        $companyOutput = self::generateOutput($this->company);
+        $carOutput = self::generateOutput($this->car);
+        $pokemonOutput = self::generateOutput($this->pokemonCollection);
+        $parentsOutput = self::generateOutput($this->parents);
+        $childrenOutput = self::generateOutput($this->children);
 
         return $this->personName . PHP_EOL
         . 'Company:' . PHP_EOL . $companyOutput
         . 'Car:' . PHP_EOL . $carOutput
         . 'Pokemon:' . PHP_EOL . $pokemonOutput
-        . 'Parents:' . PHP_EOL . $parentOutput
+        . 'Parents:' . PHP_EOL . $parentsOutput
         . 'Children:' . PHP_EOL . $childrenOutput;
 
     }
