@@ -99,8 +99,7 @@ class Worker extends Human
         $this->setLastName($lastName);
         $this->setSalaryPerWeek($salaryPerWeek);
         $this->setWorkingHours($workingHours);
-        $salaryPerHour = $this->salaryPerWeek / ( 7  * $this->workingHours);
-        $this->setSalaryPerHour($salaryPerHour);
+        $this->setSalaryPerHour();
     }
 
     // Getters
@@ -144,9 +143,9 @@ class Worker extends Human
         $this->workingHours = $workingHours;
     }
 
-    protected function setSalaryPerHour($salaryPerHour)
+    protected function setSalaryPerHour()
     {
-        $this->salaryPerHour = $salaryPerHour;
+        $this->salaryPerHour = $this->salaryPerWeek / ( 7  * $this->workingHours);
     }
 
     public function __toString()
